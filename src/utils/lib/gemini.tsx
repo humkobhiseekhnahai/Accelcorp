@@ -19,7 +19,7 @@ export default async function Gemini(prompt:string) {
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const text = response.text();
-        console.log("Gemini text:", text);
+        return text;
 
     } catch (error) {
         console.log("fetchDataGeminiAPIError", error);

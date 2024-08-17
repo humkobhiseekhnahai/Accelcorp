@@ -16,8 +16,8 @@ export enum Regions {
 }
 
 export const Trends = () => {
-    const [comment, setComment] = useState<string>('');  // Holds a single comment
-    const [messages, setMessages] = useState<string[]>([]);  // Holds an array of comments
+    const [comment, setComment] = useState<string>('');  
+    const [messages, setMessages] = useState<string[]>([]);  
     const [selectedRegion, setSelectedRegion] = useState<keyof typeof Regions | "">("");
 
     return (
