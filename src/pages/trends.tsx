@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { AppBar } from "../components/appbar";
 import { BarGraph } from "../components/bargraph";
-import { CommentSection } from "../components/commentsSection";
 import MySelect from "../components/selectcomponent";
-import { CommentBox } from "../components/commentBox";
 import { Footer } from "../components/footer";
 import Component from "@/components/discussionForm";
 
@@ -17,8 +15,7 @@ export enum Regions {
 }
 
 export const Trends = () => {
-    const [comment, setComment] = useState<string>('');  
-    const [messages, setMessages] = useState<string[]>([]);  
+
     const [selectedRegion, setSelectedRegion] = useState<keyof typeof Regions | "">("");
 
     return (
