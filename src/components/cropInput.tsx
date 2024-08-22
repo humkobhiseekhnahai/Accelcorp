@@ -1,15 +1,16 @@
 import { Input } from "@material-tailwind/react";
 import agriPhoto from "../assets/images/AgriPhoto.jpg";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { cropInputInfoAtom } from "../store/atoms/atom";
 
 
 interface InputType {
-    setCropName: (value: string) => void;
-    setLocation: (value: string) => void;
-    setSoilType: (value: string) => void;
     onClick : React.MouseEventHandler<SVGSVGElement>
 }
 
-export const CropInput: React.FC<InputType> = ({ setCropName, setLocation, setSoilType,onClick }) => {
+export const CropInput: React.FC<InputType> = ({onClick }) => {
+    // const [details,setDetails] = useRecoilState(cropInputInfoAtom);
+    const setDetails = useSetRecoilState(cropInputInfoAtom);
     return (
         <div className="w-full h-1/2 flex bg-gray-100 justify-center items-center my-10">
             <div className="w-full h-full bg-gray-100 backdrop-opacity-75 shadow-2xl mx-10 flex my-4">
@@ -22,18 +23,27 @@ export const CropInput: React.FC<InputType> = ({ setCropName, setLocation, setSo
                                 className="w-full p-2 focus:outline-none focus:ring-0 focus:border-gray-200 text-gray-400"
                                 variant="static"
                                 placeholder="Crop Name"
-                                onChange={(e) => setCropName(e.target.value)} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} crossOrigin={undefined}                            />
+                                onChange={(e) => setDetails(prevDetails => ({
+                                    ...prevDetails,
+                                    cropName: e.target.value 
+                                }))} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} crossOrigin={undefined}                            />
                             <br /><br />
                             <Input
                                 className="w-full p-2 focus:outline-none focus:ring-0 focus:border-gray-200 text-gray-400"
                                 variant="static"
                                 placeholder="Location"
-                                onChange={(e) => setLocation(e.target.value)} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} crossOrigin={undefined}                            />
+                                onChange={(e) => setDetails(prevDetails => ({
+                                    ...prevDetails,
+                                    location: e.target.value // This updates just the cropName field
+                                }))} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} crossOrigin={undefined}                            />
                             <br /><br />
 
                             <select 
                                 className="block w-full py-2.5 pl-2 text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
-                                onChange={(e) => setSoilType(e.target.value)}
+                                onChange={(e) => setDetails(prevDetails => ({
+                                    ...prevDetails,
+                                    soilType: e.target.value // This updates just the cropName field
+                                }))}
                             >
                                 <option selected>Type of soil</option>
                                 <option value="Loamy">Loamy</option>

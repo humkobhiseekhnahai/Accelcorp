@@ -4,34 +4,27 @@ import { CropInput } from "../components/cropInput";
 import { Footer } from "../components/footer";
 import { KrishiBannerImg } from "../components/krishiBannerImg";
 import { Result } from "../components/result";
+import { RecoilRoot } from "recoil";
+import { useNavigate } from "react-router-dom";
 
 export const KrishiAI = () => {
-    const [location, setLocation] = useState("");
-    const [cropName, setCropName] = useState("");
-    const [soilType, setSoilType] = useState("");
     const [showResult, setShowResult] = useState(false);
+    const navigate = useNavigate();
 
-    const handleResult = () => {
-        setShowResult(true);
+    const handleNavigate = () => {
+        navigate("/report");
     };
 
+    console.log("ShowResult State:", showResult);
+
     return (
-        <>
-            <div className="h-dvh w-full relative">
-                <AppBar />
-                <KrishiBannerImg />
-                {!showResult ? (
-                    <CropInput
-                        setLocation={setLocation}
-                        setCropName={setCropName}
-                        setSoilType={setSoilType}
-                        onClick={handleResult}
-                    />
-                ) : (
-                    <Result location={location} cropName={cropName} soilType={soilType} />
-                )}
-                <Footer />
-            </div>
-        </>
+        <div className="h-dvh w-full relative">
+            <AppBar />
+            <KrishiBannerImg />
+            <RecoilRoot>    
+            <CropInput onClick={handleNavigate} /> 
+            </RecoilRoot>
+            <Footer />
+        </div>
     );
 };
