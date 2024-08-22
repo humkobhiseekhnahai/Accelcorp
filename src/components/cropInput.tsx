@@ -1,6 +1,6 @@
 import { Input } from "@material-tailwind/react";
 import agriPhoto from "../assets/images/AgriPhoto.jpg";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { cropInputInfoAtom } from "../store/atoms/atom";
 
 
@@ -39,7 +39,7 @@ export const CropInput: React.FC<InputType> = ({onClick }) => {
                             <br /><br />
 
                             <select 
-                                className="block w-full py-2.5 pl-2 text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                                className="block w-full py-2.5 pl-2 text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-900 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                                 onChange={(e) => setDetails(prevDetails => ({
                                     ...prevDetails,
                                     soilType: e.target.value // This updates just the cropName field

@@ -11,7 +11,7 @@ interface Topic {
   replies: number;
 }
 
-export default function Component() {
+export default function DiscussionFormComponent() {
   const [topics, setTopics] = useState<Topic[]>([
     { id: 1, title: "What's your favorite programming language and why?", author: "TechEnthusiast", replies: 15 },
     { id: 2, title: "Share your best React performance optimization tips", author: "ReactNinja", replies: 8 },
@@ -35,8 +35,9 @@ export default function Component() {
   };
 
   return (
-    <div className="w-full p-4 space-y-6 bg-green-50 min-h-screen h-full">
-      <h1 className="text-3xl font-bold text-center text-green-800 mb-8">Green Discussion Forum</h1>
+    <div className='w-full h-full flex justify-center'>
+    <div className="w-5/6 p-4 space-y-6 min-h-screen h-full">
+      <h1 className="text-3xl font-bold text-center text-green-800 mb-8">Community Discussion Forum</h1>
       
       <Card className="bg-white shadow-md">
         <CardContent className="p-4">
@@ -78,6 +79,7 @@ export default function Component() {
           </Card>
         ))}
       </div>
+    </div>
     </div>
   );
 }

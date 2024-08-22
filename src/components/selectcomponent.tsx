@@ -27,14 +27,17 @@ const MySelect: React.FC<MySelectProps> = ({ selectedRegion, setSelectedRegion, 
     };
 
     return (
-        <div className='w-full p-5 focus:ring-0'>
-            <div className='w-2/6 flex items-center px-2 focus:ring-0'>
+        <div className='w-full py-5 bg-gray-100'>
+            <h1 className='w-full text-sm font-light flex justify-center items-center  text-gray-500'>
+                    **Historical yield data of crops (in metric tons)**
+            </h1>
+            <div className='w-1/6 ml-5'>
                 <select 
-                    className='bg-neutral-900/10 shadow-xl focus:ring-0 rounded-md p-2'
+                    className='w-full p-2 flex items-center border-2 border-slate-500 justify-center font-sm bg-cyan-100 shadow-lg focus:ring-0 focus-visible:0 focus:outline-none rounded-lg transition-all duration-200 transform hover:scale-105 hover:shadow-xl'
                     onChange={handleOptionChange} 
                     value={selectedRegion}
                 >
-                    <option value="">Please select a region</option>
+                    <option value="" disabled>Select a region</option>
                     {Object.values(Regions).map((region) => (
                         <option key={region} value={region}>
                             {region}
@@ -42,11 +45,9 @@ const MySelect: React.FC<MySelectProps> = ({ selectedRegion, setSelectedRegion, 
                     ))}
                 </select>
             </div>
-            <div className='flex justify-between items-center w-full p-2 mr-2'>
-                <p className='font-medium'>Selected Region: {selectedRegion || Regions.AllStates}</p>
-                <h1 className='w-6/12 pb-10 pr-10 mr-20 text-sm font-thin'>
-                    **Historical yield data of crops (in metric tons)**
-                </h1>
+            <div className='w-full flex items-center pl-6 mt-4'>
+                <p className='text-lg font-medium text-gray-700'>Selected Region: </p><p className='font-sm font-bold p-2'>{selectedRegion || Regions.AllStates}</p>
+                
             </div>
         </div>
     );
