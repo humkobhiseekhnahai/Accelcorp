@@ -3,7 +3,7 @@ import { AppBar } from "../components/appbar";
 import { BarGraph } from "../components/bargraph";
 import MySelect from "../components/selectcomponent";
 import { Footer } from "../components/footer";
-import DiscussionFormComponent from "@/components/discussionForm";
+import DiscussionFormComponent from "../components/discussionForm";
 import marketBlock from "../assets/images/marketBlock.jpg"
 
 export enum Regions {
@@ -42,7 +42,7 @@ export const Trends = () => {
                 </div>
             </div>
             {/* bargraph */}
-            <div className="w-full bg-gray-100 h-5/6">
+            <div className="w-full bg-gray-100 h-screen">
                 <BarGraph state={selectedRegion} />
             </div>
             <MySelect selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} Regions={Regions} />
