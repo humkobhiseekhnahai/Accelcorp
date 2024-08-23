@@ -3,10 +3,14 @@ import Gemini from '../utils/lib/gemini';
 import { RadicalGraph } from './radicalGraph';
 import { Loading } from './loading';
 import { useRecoilValue } from 'recoil';
-import { cropInputInfoAtom } from '../store/atoms/atom';
+import { cropNameAtom,locationAtom,soilTypeAtom } from '../store/atoms/atom';
 
 export const Result = () => {
-    const details = useRecoilValue(cropInputInfoAtom);
+    const cropName = useRecoilValue(cropNameAtom);
+    const location = useRecoilValue(locationAtom);
+    const soilType = useRecoilValue(soilTypeAtom);
+    const crop = useRecoilValue(cropNameAtom)
+
 
     type CropData = {
         avgTemp: string;
@@ -35,11 +39,13 @@ export const Result = () => {
         setLoading(true);
         try {
             const result = await Gemini(prompt);
+            // console.log(result);
+            console.log(location)
 
             if (result) {
                 try {
-                    const parsedResult: CropData = JSON.parse(result);
-                    setData(prevData => ({ ...prevData, ...parsedResult }));
+                    // const parsedResult: CropData = JSON.parse(result);
+                    setData(prevData => ({ ...prevData, result }));
                 } catch (jsonError) {
                     console.error("Failed to parse JSON, treating result as plain text:", jsonError);
                     setData(prevData => ({ ...prevData, result }));
@@ -54,23 +60,26 @@ export const Result = () => {
         }
     };
 
-    useEffect(() => {
-        const prompts = [
-            `location : ${details.location}, crop: ${details.cropName}, soil: ${details.soilType}, provide avg weather in °C combined for the months crop is grown, follow format => {\"avgTemp\":<value with unit °C in string>} as string`,
-            `location : ${details.location}, crop: ${details.cropName}, soil: ${details.soilType}, provide avg humidity in [g/m^3] combined for the months crop is grown, follow format => {\"avgHumidity\":<value with unit [g/m^3] in string>} as string`,
-            `location : ${details.location}, crop: ${details.cropName}, soil: ${details.soilType}, provide avg rainfall in mm combined for the months crop is grown, follow format => {\"avgRainfall\": <value with unit mm in string>} as string`,
-            `location : ${details.location}, crop: ${details.cropName}, soil: ${details.soilType}, check if the crop will grow in the given soil, follow format => {\"soilSuitable\":<value in boolean>} as string`,
-            `location : ${details.location}, crop: ${details.cropName}, soil: ${details.soilType}, provide the best variety of the crop that will grow in the given conditions, follow format => {\"variety\":<enter value in string max variety is 2 minimum is 1>} as string`,
-            `location : ${details.location}, crop: ${details.cropName}, soil: ${details.soilType}, provide the market price for the crop in that particular location, follow format => {\"marketPrice\":<enter value in string in INR>} as string`,
-            `location : ${details.location}, crop: ${details.cropName}, soil: ${details.soilType}, provide the probability of crop successfully growing in that particular location and is healthy, follow format => {\"success\":<enter percentage without unit in string>} as string`,
-            `location : ${details.location}, crop: ${details.cropName}, soil: ${details.soilType}, provide the percentage of crop producing estimated profit in that particular location after proper yield, follow format => {\"profit\":<enter percentage without unit in string>} as string`,
-        ];
-
-        // Fetch data for each prompt
-        prompts.forEach((command) => {
-            fetchData(command);
-        });
-    }, [details.location, details.cropName, details.soilType]);
+    if(location!=""){
+        useEffect(() => {
+            const prompts = [
+                `location : ${location}, crop: ${cropName}, soil: ${soilType}, provide avg weather in °C combined for the months crop is grown, follow format => {\"avgTemp\":<value with unit °C in string>} as string`,
+                `location : ${location}, crop: ${cropName}, soil: ${soilType}, provide avg humidity in [g/m^3] combined for the months crop is grown, follow format => {\"avgHumidity\":<value with unit [g/m^3] in string>} as string`,
+                `location : ${location}, crop: ${cropName}, soil: ${soilType}, provide avg rainfall in mm combined for the months crop is grown, follow format => {\"avgRainfall\": <value with unit mm in string>} as string`,
+                `location : ${location}, crop: ${cropName}, soil: ${soilType}, check if the crop will grow in the given soil, follow format => {\"soilSuitable\":<value in boolean>} as string`,
+                `location : ${location}, crop: ${cropName}, soil: ${soilType}, provide the best variety of the crop that will grow in the given conditions, follow format => {\"variety\":<enter value in string max variety is 2 minimum is 1>} as string`,
+                `location : ${location}, crop: ${cropName}, soil: ${soilType}, provide the market price for the crop in that particular location, follow format => {\"marketPrice\":<enter value in string in INR>} as string`,
+                `location : ${location}, crop: ${cropName}, soil: ${soilType}, provide the probability of crop successfully growing in that particular location and is healthy, follow format => {\"success\":<enter percentage without unit in string>} as string`,
+                `location : ${location}, crop: ${cropName}, soil: ${soilType}, provide the percentage of crop producing estimated profit in that particular location after proper yield, follow format => {\"profit\":<enter percentage without unit in string>} as string`,
+            ];
+    
+            // Fetch data for each prompt
+            prompts.forEach((command) => {
+                fetchData(command);
+            });
+        }, [location, cropName, soilType]);
+    }
+   
 
     if (loading) {
         return <Loading />;
@@ -81,6 +90,7 @@ export const Result = () => {
     }
 
     console.log("Fetched Data:", data);
+    console.log("cropName",{crop: crop ? crop:"Nil"})
 
     return (
         <div className='w-full h-1/2 flex justify-center items-center my-5 rounded-md shadow-3xl'>
@@ -90,13 +100,13 @@ export const Result = () => {
                     <div className='w-full h-5/6 flex justify-center items-center'>
                         <div className='flex flex-col h-full ml-20 w-1/2 text-gray-100 font-sm overflow-scroll'>
                             <div className='flex text-white items-center m-4'>
-                                <p className='font-bold m-1 text-white'>Crop :</p> {details.cropName.toUpperCase()}
+                                <p className='font-bold m-1 text-white'>Crop :</p> {cropName.toUpperCase()}
                             </div>
                             <div className='flex text-white items-center m-4'>
-                                <p className='font-bold m-1'>Location :</p> {details.location.toUpperCase()}
+                                <p className='font-bold m-1'>Location :</p> {location.toUpperCase()}
                             </div>
                             <div className='flex text-white items-center m-4'>
-                                <p className='font-bold m-1'>Soil :</p> {details.soilType.toUpperCase()}
+                                <p className='font-bold m-1'>Soil :</p> {soilType.toUpperCase()}
                             </div>
                             <div className='flex text-white items-center m-4'>
                                 <p className='font-bold m-1'>Soil Suitable:</p> {data.soilSuitable ? "YES" : "NO"}
@@ -124,5 +134,6 @@ export const Result = () => {
                 </div>
             </div>
         </div>
+        
     );
 };

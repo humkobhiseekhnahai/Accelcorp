@@ -1,51 +1,52 @@
 import { Input } from "@material-tailwind/react";
 import agriPhoto from "../assets/images/AgriPhoto.jpg";
 import { useSetRecoilState } from "recoil";
-import { cropInputInfoAtom } from "../store/atoms/atom";
-
+import { cropNameAtom, locationAtom, soilTypeAtom } from "../store/atoms/atom";
+import React from "react";
 
 interface InputType {
-    onClick : React.MouseEventHandler<SVGSVGElement>
+    onClick: React.MouseEventHandler<SVGSVGElement>;
 }
 
-export const CropInput: React.FC<InputType> = ({onClick }) => {
-    // const [details,setDetails] = useRecoilState(cropInputInfoAtom);
-    const setDetails = useSetRecoilState(cropInputInfoAtom);
+export const CropInput: React.FC<InputType> = ({ onClick }) => {
+    const setCropName = useSetRecoilState(cropNameAtom);
+    const setLocation = useSetRecoilState(locationAtom);
+    const setSoilType = useSetRecoilState(soilTypeAtom);
+
     return (
         <div className="w-full h-1/2 flex bg-gray-100 justify-center items-center my-10">
             <div className="w-full h-full bg-gray-100 backdrop-opacity-75 shadow-2xl mx-10 flex my-4">
                 <div className="flex flex-col w-1/2 h-full text-black bg-gray-100">
                     <div className="w-full h-full flex flex-col justify-center items-center bg-gray-100">
-                        <h1 className="p-4 text-3xl font-medium">Enter Details For Analysis</h1><br />
-
+                        <h1 className="p-4 text-3xl font-medium">Enter Details For Analysis</h1>
+                        <br />
                         <div className="w-3/6 flex flex-col items-center">
                             <Input
                                 className="w-full p-2 focus:outline-none focus:ring-0 focus:border-gray-200 text-gray-400"
                                 variant="static"
                                 placeholder="Crop Name"
-                                onChange={(e) => setDetails(prevDetails => ({
-                                    ...prevDetails,
-                                    cropName: e.target.value 
-                                }))} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} crossOrigin={undefined}                            />
-                            <br /><br />
+                                onChange={(e) => {
+                                    setCropName(e.target.value);
+                                } } onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} crossOrigin={undefined}                            />
+                            <br />
+                            <br />
                             <Input
                                 className="w-full p-2 focus:outline-none focus:ring-0 focus:border-gray-200 text-gray-400"
                                 variant="static"
                                 placeholder="Location"
-                                onChange={(e) => setDetails(prevDetails => ({
-                                    ...prevDetails,
-                                    location: e.target.value // This updates just the cropName field
-                                }))} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} crossOrigin={undefined}                            />
-                            <br /><br />
-
-                            <select 
+                                onChange={(e) => {
+                                    setLocation(e.target.value);
+                                    console.log()
+                                } } onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} crossOrigin={undefined}                            />
+                            <br />
+                            <br />
+                            <select
                                 className="block w-full py-2.5 pl-2 text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-900 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
-                                onChange={(e) => setDetails(prevDetails => ({
-                                    ...prevDetails,
-                                    soilType: e.target.value // This updates just the cropName field
-                                }))}
+                                onChange={(e) => {
+                                    setSoilType(e.target.value);
+                                }}
                             >
-                                <option selected>Type of soil</option>
+                                <option value="" disabled>Select type of soil</option>
                                 <option value="Loamy">Loamy</option>
                                 <option value="Silty">Silty</option>
                                 <option value="Clayey">Clayey</option>
