@@ -13,9 +13,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model data{
-  id  Int @id @default(autoincrement())
-  details Json?
+model Data{
+  id        Int   @id @default(autoincrement())
+  location  String
+  cropName  String
+  soilType  String
+
 }
 
 

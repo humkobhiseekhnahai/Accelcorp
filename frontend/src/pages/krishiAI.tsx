@@ -7,26 +7,22 @@ import { useNavigate } from "react-router-dom";
 import { cropNameAtom } from "@/store/atoms/atom";
 
 export const KrishiAI = () => {
-    const crop = useRecoilValue(cropNameAtom);
-    const navigate = useNavigate();
+    
 
-    const handleNavigate = () => {
-        navigate("/report");
-        console.log(crop)
-    };
+    
 
     
 
     return (
         <div className="h-dvh w-full relative">
-             <RecoilRoot>    
+            
             <AppBar />
             <KrishiBannerImg />
            
-            <CropInput onClick={handleNavigate} /> 
+            <CropInput/> 
             
             <Footer />
-            </RecoilRoot>
+           
         </div>
     );
 };

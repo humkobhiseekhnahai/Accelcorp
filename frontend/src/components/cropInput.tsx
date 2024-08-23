@@ -1,17 +1,27 @@
 import { Input } from "@material-tailwind/react";
 import agriPhoto from "../assets/images/AgriPhoto.jpg";
-import { useSetRecoilState } from "recoil";
-import { cropNameAtom, locationAtom, soilTypeAtom } from "../store/atoms/atom";
-import React from "react";
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-interface InputType {
-    onClick: React.MouseEventHandler<SVGSVGElement>;
-}
+export const CropInput: React.FC = () => {
+    const [cropName, setCropName] = useState("");
+    const [location, setLocation] = useState("");
+    const [soilType, setSoilType] = useState("");
+    const navigate = useNavigate();
 
-export const CropInput: React.FC<InputType> = ({ onClick }) => {
-    const setCropName = useSetRecoilState(cropNameAtom);
-    const setLocation = useSetRecoilState(locationAtom);
-    const setSoilType = useSetRecoilState(soilTypeAtom);
+    const handleNavigate = async () => {
+        try {
+            await axios.post("http://localhost:3000/send", {
+                cropName: cropName,
+                location: location,
+                soilType: soilType
+            });
+            navigate("/report");
+        } catch (error) {
+            console.error("Failed to send data", error);
+        }
+    };
 
     return (
         <div className="w-full h-1/2 flex bg-gray-100 justify-center items-center my-10">
@@ -25,28 +35,23 @@ export const CropInput: React.FC<InputType> = ({ onClick }) => {
                                 className="w-full p-2 focus:outline-none focus:ring-0 focus:border-gray-200 text-gray-400"
                                 variant="static"
                                 placeholder="Crop Name"
-                                onChange={(e) => {
-                                    setCropName(e.target.value);
-                                } } onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} crossOrigin={undefined}                            />
+                                onChange={(e) => setCropName(e.target.value)}
+                            />
                             <br />
                             <br />
                             <Input
                                 className="w-full p-2 focus:outline-none focus:ring-0 focus:border-gray-200 text-gray-400"
                                 variant="static"
                                 placeholder="Location"
-                                onChange={(e) => {
-                                    setLocation(e.target.value);
-                                    console.log()
-                                } } onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} crossOrigin={undefined}                            />
+                                onChange={(e) => setLocation(e.target.value)}
+                            />
                             <br />
                             <br />
                             <select
                                 className="block w-full py-2.5 pl-2 text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-900 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer"
-                                onChange={(e) => {
-                                    setSoilType(e.target.value);
-                                }}
+                                onChange={(e) => setSoilType(e.target.value)}
                             >
-                                <option value="" disabled>Select type of soil</option>
+                                <option value="">Select type of soil</option>
                                 <option value="Loamy">Loamy</option>
                                 <option value="Silty">Silty</option>
                                 <option value="Clayey">Clayey</option>
@@ -56,7 +61,7 @@ export const CropInput: React.FC<InputType> = ({ onClick }) => {
                         </div>
                     </div>
                     <div className="flex justify-end mb-10 mx-10">
-                        <svg onClick={onClick} className="w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25">
+                        <svg onClick={handleNavigate} className="w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25">
                             <path style={{ fill: "#232326" }} d="m17.5 5.999-.707.707 5.293 5.293H1v1h21.086l-5.294 5.295.707.707L24 12.499l-6.5-6.5z" data-name="Right"/>
                         </svg>
                     </div>
