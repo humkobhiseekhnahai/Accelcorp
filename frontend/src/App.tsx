@@ -5,7 +5,7 @@ import { Trends } from './pages/trends'
 import { Home } from './pages/home'
 import { KrishiAI } from './pages/krishiAI'
 import { Report } from './pages/report'
-import React from 'react'
+import { FarmingPracticesPage } from './pages/farmingPractisesPage'
 
 function App() {
 
@@ -18,6 +18,7 @@ function App() {
         <Route path='/home' element={<Home/>}/>
         <Route path='/krishiAI' element={<KrishiAI/>}/>
         <Route path='/report' element={<Report/>}/>
+        <Route path='/practices' element={<FarmingPracticesPage/>}/>
 
       </Routes>
      </BrowserRouter>

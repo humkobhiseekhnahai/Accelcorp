@@ -35,16 +35,14 @@ export const CropInput: React.FC = () => {
                                 className="w-full p-2 focus:outline-none focus:ring-0 focus:border-gray-200 text-gray-400"
                                 variant="static"
                                 placeholder="Crop Name"
-                                onChange={(e) => setCropName(e.target.value)}
-                            />
+                                onChange={(e) => setCropName(e.target.value)} crossOrigin={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                            />
                             <br />
                             <br />
                             <Input
                                 className="w-full p-2 focus:outline-none focus:ring-0 focus:border-gray-200 text-gray-400"
                                 variant="static"
                                 placeholder="Location"
-                                onChange={(e) => setLocation(e.target.value)}
-                            />
+                                onChange={(e) => setLocation(e.target.value)} crossOrigin={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                            />
                             <br />
                             <br />
                             <select
