@@ -1,7 +1,6 @@
-
 import { Label, PolarRadiusAxis, RadialBar, RadialBarChart, Tooltip } from 'recharts'
 
-export default function ChartRadialStacked({ successRate }: { successRate: number }) {
+export default function ChartRadialStacked({ successRate, suggest }: { successRate: number ,suggest: string}) {
   const notSuccess: number = 100 - successRate
 
   const chartData = [{ month: "January", success: successRate, notsuccess: notSuccess }]
@@ -85,7 +84,12 @@ export default function ChartRadialStacked({ successRate }: { successRate: numbe
           </RadialBarChart>
         </div>
       </div>
-     
+      <div className="p-4 text-sm">
+        <div className="flex flex-col items-center gap-2 font-medium">
+        Other crops that you can grow <p className='text-gray-500'>{suggest}</p>
+        </div>
+        
+      </div>
     </div>
   )
 }
