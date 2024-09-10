@@ -65,7 +65,7 @@ To include a video demonstration of the application, you can use the following H
 
 ```html
 <video width="640" height="360" controls>
-  <source src="/Users/pratham/projects/Accelcorp/frontend/src/assets/demo.mp4" type="video/mp4">
+  <source src="frontend/src/assets/WhatsApp Video 2024-09-11 at 01.06.21.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 ```
