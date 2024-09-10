@@ -45,8 +45,12 @@ Accelcorp is a comprehensive web application designed to assist farmers and vete
 
 4. Run Docker (ensure Docker is installed on your system):
    ```
-   make sure you run postgres image in the docker container and add a connection url
+   make sure you run postgres image in the docker container and add a connection url in .env
    ```
+5. Update .env
+    ```
+    add VITE_GEMINI_API_KEY
+    ```
 
 5. Set up and run Vaidya AI:
    ```
