@@ -64,10 +64,8 @@ Accelcorp is a comprehensive web application designed to assist farmers and vete
 To include a video demonstration of the application, you can use the following HTML snippet:
 
 ```html
-<video width="640" height="360" controls>
-  <source src="https://github.com/user-attachments/assets/734f7d16-5c7d-4f80-ad01-1c78d5570ff8)" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+[![Watch the video](https://i.sstatic.net/Vp2cE.png)](https://github.com/user-attachments/assets/734f7d16-5c7d-4f80-ad01-1c78d5570ff8
+)
 
 ```
 
