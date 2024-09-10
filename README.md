@@ -65,10 +65,10 @@ To include a video demonstration of the application, you can use the following H
 
 ```html
 <video width="640" height="360" controls>
-  <source src="frontend/src/assets/demo.mp4" type="video/mp4">
+  <source src="https://github.com/user-attachments/assets/734f7d16-5c7d-4f80-ad01-1c78d5570ff8)" type="video/mp4">
   Your browser does not support the video tag.
 </video>
-https://github.com/user-attachments/assets/734f7d16-5c7d-4f80-ad01-1c78d5570ff8
+
 ```
 
 ## Contributing
