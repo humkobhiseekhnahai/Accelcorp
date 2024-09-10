@@ -59,6 +59,16 @@ Accelcorp is a comprehensive web application designed to assist farmers and vete
    python app.py
    ```
 
+## Video Placeholder
+
+To include a video demonstration of the application, you can use the following HTML snippet:
+
+```html
+<video width="640" height="360" controls>
+  <source src="/Users/pratham/projects/Accelcorp/frontend/src/assets/demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+```
 
 ## Contributing
 
