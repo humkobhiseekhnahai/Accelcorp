@@ -63,7 +63,7 @@ Accelcorp is a comprehensive web application designed to assist farmers and vete
 
 To include a video demonstration of the application, you can use the following HTML snippet:
 
-[![Watch the video](https://i.sstatic.net/Vp2cE.png)](https://youtu.be/UUTAQdWme3k)
+[![Watch the video](https://youtu.be/UUTAQdWme3k)](https://youtu.be/UUTAQdWme3k)
 
 ## Contributing
 
