@@ -2,6 +2,11 @@
 
 Accelcorp is a comprehensive web application designed to assist farmers and veterinarians with crop management and animal health. The application consists of two main components: a crop analysis tool and the Vaidya AI for animal disease information.
 
+
+https://github.com/user-attachments/assets/3427af82-2837-451c-af5d-38a4b5c38b48
+
+
+
 ## Features
 
 ### Crop Analysis Tool
@@ -58,10 +63,6 @@ Accelcorp is a comprehensive web application designed to assist farmers and vete
    python ingest.py
    python app.py
    ```
-
-## Video Placeholder
-
-[![Watch the video](https://youtu.be/UUTAQdWme3k)](https://youtu.be/UUTAQdWme3k)
 
 ## Contributing
 
