@@ -1,8 +1,16 @@
 import { useState } from 'react';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card";
 import { MessageCircle, User } from 'lucide-react';
+import React from 'react';
+import { ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+import '../../app/globals.css';
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 interface Topic {
   id: number;
@@ -24,10 +32,10 @@ export default function DiscussionFormComponent() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (newTopic) {
-      setTopics([...topics, { 
-        id: topics.length + 1, 
-        title: newTopic, 
-        author: "You", 
+      setTopics([...topics, {
+        id: topics.length + 1,
+        title: newTopic,
+        author: "You",
         replies: 0
       }]);
       setNewTopic('');
@@ -35,51 +43,60 @@ export default function DiscussionFormComponent() {
   };
 
   return (
-    <div className='w-full h-full flex justify-center'>
-    <div className="w-5/6 p-4 space-y-6 min-h-screen h-full">
-      <h1 className="text-3xl font-bold text-center text-green-800 mb-8">Community Discussion Forum</h1>
-      
-      <Card className="bg-white shadow-md">
-        <CardContent className="p-4">
-          <form onSubmit={handleSubmit} className="flex gap-2">
-            <Input
-              value={newTopic}
-              onChange={(e) => setNewTopic(e.target.value)}
-              placeholder="Start a new discussion..."
-              className="flex-grow border-green-300 focus:border-green-500 focus:ring-green-500"
-              aria-label="New topic title"
-            />
-            <Button type="submit" className="bg-green-600 hover:bg-green-700 text-white px-6">Post</Button>
-          </form>
-        </CardContent>
-      </Card>
+   
+    <div className='w-full h-full flex justify-center bg-neutral-50'>
+      <div className="w-5/6 p-4 space-y-6 min-h-screen h-full">
+        <div className="">
+          <h1 className="text-3xl font-bold text-center text-green-700 ">
+            Community Discussion Forum
+          </h1>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {topics.map((topic) => (
-          <Card key={topic.id} className="hover:bg-green-100 transition-colors border-green-200 flex flex-col justify-between">
-            <CardHeader className="p-4">
-              <CardTitle className="text-lg font-medium text-green-800 mb-2">{topic.title}</CardTitle>
-              <div className="flex items-center text-sm text-green-600">
-                <User className="h-4 w-4 mr-1" />
-                <span>{topic.author}</span>
-              </div>
-            </CardHeader>
-            <CardContent className="p-4 pt-0 flex justify-between items-center text-sm text-green-600">
-              <div className="flex items-center gap-1">
-                <MessageCircle className="h-4 w-4" />
-                <span>{topic.replies} replies</span>
-              </div>
-              <Button 
-                variant="outline" 
-                className="text-green-600 border-green-300 hover:bg-green-100 focus:bg-green-100 transition-transform transform hover:-translate-y-1 hover:shadow-lg"
-              >
-                View Discussion
-              </Button>
-            </CardContent>
-          </Card>
-        ))}
+        <Card className="bg-neutral-50 shadow-md card-3d">
+          <CardContent className="p-4">
+            <div className='bg-white'>
+            <form onSubmit={handleSubmit} className="flex gap-2">
+              <Input
+                value={newTopic}
+                onChange={(e) => setNewTopic(e.target.value)}
+                placeholder="Start a new discussion..."
+                className="flex-grow border-green-300 focus:border-green-500 focus:ring-green-500 input-3d"
+                aria-label="New topic title"
+                // style={{
+                //   '--placeholder-color': '#ffffff' // Custom property for placeholder color
+                // }}
+              />
+              <Button type="submit" className="bg-green-600 hover:bg-green-700 text-white px-6 button-3d">Post</Button>
+            </form></div>
+          </CardContent>
+        </Card>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {topics.map((topic) => (
+            <Card key={topic.id} className="hover:bg-green-100 transition-colors border-green-200 flex flex-col justify-between card-3d">
+              <CardHeader className="p-4">
+                <CardTitle className="text-lg font-medium text-green-800 mb-2">{topic.title}</CardTitle>
+                <div className="flex items-center text-sm text-green-600">
+                  <User className="h-4 w-4 mr-1" />
+                  <span>{topic.author}</span>
+                </div>
+              </CardHeader>
+              <CardContent className="p-4 pt-0 flex justify-between items-center text-sm text-green-600">
+                <div className="flex items-center gap-1">
+                  <MessageCircle className="h-4 w-4" />
+                  <span>{topic.replies} replies</span>
+                </div>
+                <Button
+                  variant="outline"
+                  className="text-green-600 border-green-300 hover:bg-green-100 focus:bg-green-100 transition-transform transform hover:-translate-y-1 hover:shadow-lg"
+                >
+                  View Discussion
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
-    </div>
     </div>
   );
 }

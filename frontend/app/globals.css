@@ -63,7 +63,119 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Define neon green colors */
+.text-neon-green-500 {
+  color: #39FF14; /* Neon green color */
+}
+
+.text-neon-green-400 {
+  color: #57D900; /* Slightly different shade of neon green */
+}
+
+/* Define placeholder color */
+.placeholder-white::placeholder {
+  color: #ffffff; /* White color for placeholder */
+}
+
+
+input::placeholder {
+  color: var(--placeholder-color);
+}
+
+.custom-placeholder::placeholder {
+  color: #ffffff; /* Your desired placeholder color */
+}
+
+/*3d effects*/
+/* 3D Effect for Cards */
+.card-3d {
+  @apply rounded-lg bg-neutral-200; /* Ensure proper radius and background */
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 8px 16px rgba(179, 176, 176, 0.3), 0 12px 30px rgba(158, 153, 153, 0.2);
+  background: linear-gradient(145deg, #e0dcdc, #8ec493); /* Gradient effect */
+}
+
+.card-3d:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(167, 163, 163, 0.4), 0 18px 40px rgba(117, 115, 115, 0.3);
+}
+
+
+/* 3D Effect for Input */
+/* 3D Effect for Input */
+.input-3d {
+  @apply rounded-md; /* Ensure proper radius */
+  box-shadow: inset 0 1px 3px rgba(108, 107, 107, 0.1), 0 4px 8px rgba(0, 255, 0, 0.3); /* Neon green glow */
+  transition: box-shadow 0.3s;
+}
+
+.input-3d:focus {
+  box-shadow: 0 0 8px rgba(0, 255, 0, 0.5); /* Neon green glow on focus */
+}
+
+
+/* 3D Effect for Button */
+.button-3d {
+  @apply rounded-md; /* Ensure proper radius */
+  box-shadow: 0 4px 8px rgba(165, 163, 163, 0.2), 0 6px 15px rgba(0, 255, 0, 0.3); /* Neon green shadow */
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.button-3d:hover {
+  box-shadow: 0 8px 16px rgba(167, 165, 165, 0.3), 0 12px 25px rgba(0, 255, 0, 0.4); /* Increased shadow on hover */
+  transform: translateY(-2px);
+}
+
+/* Neon Green Colors */
+.text-neon-green-500 {
+  color: #39FF14; /* Neon green color */
+}
+
+.text-neon-green-400 {
+  color: #6BFF8C; /* Light neon green color */
+}
+
+.border-neon-green-300 {
+  border-color: #39FF14; /* Neon green border */
+}
+
+.bg-neon-green-500 {
+  background-color: #39FF14; /* Neon green background */
+}
+
+/* Neon Shadow */
+
+/* 3D Box Effect for Title */
+.title-3d {
+  @apply p-6 rounded-lg shadow-lg; /* Padding, border-radius, and shadow */
+  background: linear-gradient(145deg, #333, #444); /* Gradient effect */
+  transition: transform 0.3s, box-shadow 0.3s; /* Transition effects */
+  box-shadow: 0 8px 16px rgba(21, 21, 21, 0.3), 0 12px 30px rgba(0, 0, 0, 0.2); /* Initial shadow */
+}
+
+.title-3d:hover {
+  transform: translateY(-10px); /* Lift effect */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4), 0 18px 40px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+/* 3D Box Effect for Heading Wrapper */
+/* 3D Box Effect for Heading Wrapper with Green Border */
+/* 3D Box Effect for Heading Wrapper with Green Border */
+.heading-3d-wrapper {
+  padding: 1.5rem; /* Adjust padding as needed */
+  border-radius: 8px; /* Adjust radius for the 3D effect */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 12px 30px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  background: linear-gradient(145deg, rgba(167, 165, 165, 0.3), rgba(240, 240, 240, 0.3)); /* Gradient background */
+  border: 4px solid #f1f6f1; /* Green border */
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth transitions */
+}
+
+.heading-3d-wrapper:hover {
+  transform: translateY(-10px); /* Lift effect on hover */
+  box-shadow: 0 12px 24px rgba(26, 26, 26, 0.4), 0 18px 40px rgba(28, 28, 28, 0.3); /* Enhanced shadow */
 }
