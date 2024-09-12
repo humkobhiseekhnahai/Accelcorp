@@ -44,6 +44,8 @@ https://github.com/user-attachments/assets/3427af82-2837-451c-af5d-38a4b5c38b48
    ```
    cd backend
    yarn
+   npx prisma migrate dev
+   npx prisma generate 
    tsc -b
    node dist/index.js
    ```
